@@ -2,8 +2,9 @@ import Button from "../../07_shared/ui/Button/Button";
 import Input from "../../07_shared/ui/Input/Input";
 import cn from 'classnames'
 import styles from './RegisterForm.module.css'
-import { useState, type ChangeEvent, type MouseEvent} from "react";
+import { useEffect, useState, type ChangeEvent, type MouseEvent} from "react";
 import { Link } from "react-router-dom";
+import { useRegisterMutation } from "../../06_entities/store/loginApi";
 
 
 export default function RegisterForm () {
@@ -12,6 +13,25 @@ export default function RegisterForm () {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
 
+    const [register, {data}] = useRegisterMutation()
+
+    const authRegister = async (event: MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault()
+        await register({
+            name,
+            email,
+            password
+        })
+        setEmail('')
+        setPassword('')
+        setName('')
+    }
+
+    useEffect(() => {
+        if (data) {
+            localStorage.setItem('token', data?.access_token)
+        }
+    }, [data])
 
     return (
         <form className={cn(styles['form'])} >
@@ -38,14 +58,9 @@ export default function RegisterForm () {
             /> 
             <Button
                 text={'Зарегистрироваться'}
-                onClick={(event: MouseEvent<HTMLButtonElement>) => {
-                    console.log(email)
-                    event.preventDefault()
-                    setEmail('')
-                    setPassword('')
-                }}
+                onClick={authRegister}
             />
-            <p>Уже есть аккаунт?<Link to={'/login'}>Войти</Link></p>
+            <p>Уже есть аккаунт? <Link to={'/login'}>Войти</Link></p>
         </form>
 
     )

@@ -16,6 +16,12 @@ interface Login {
     password: string
 }
 
+interface Register {
+    name: string,
+    email: string,
+    password: string
+}
+
 
 export const loginApi = createApi({
     reducerPath: 'login',
@@ -29,8 +35,19 @@ export const loginApi = createApi({
                 method: 'POST',
                 body: user
             })
+        }),
+        register: builder.mutation<LoginResponse, Register>({
+            query:  (user) => ({
+                url: 'register',
+                method: 'POST',
+                body: user
+            })
         })
     })
+
 })
 
-export const { useLoginMutation } = loginApi
+export const { 
+    useLoginMutation,
+    useRegisterMutation
+ } = loginApi

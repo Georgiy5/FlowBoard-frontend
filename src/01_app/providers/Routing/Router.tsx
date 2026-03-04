@@ -1,22 +1,27 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
-import LoginForm from "../../../05_features/LoginForm/LoginForm";
-import RegisterForm from "../../../05_features/RegisterForm/RegisterForm";
+import LoginPage from "../../../03_pages/Login/Login.page";
+import RegisterPage from "../../../03_pages/Register/Register.page";
+import DashboardPage from "../../../03_pages/Dashboard/Dashboard.page";
+import BoardPage from "../../../03_pages/Board/Board.page";
 
 
 const router = createBrowserRouter([
     {
-    path: "/",
-    index: true, // Этот маршрут срабатывает только для точного совпадения "/"
-    element: <Navigate to="/login" replace />, // Редирект
-  },
-  {
-    path: "/login",
-    element: <LoginForm/>,
-  },
-  {
-    path: "/register",
-    element: <RegisterForm/>
-  }
+      path: "/",
+      element: <DashboardPage/>,
+    },
+    {
+      path: "/boards/:id",
+      element: <BoardPage/>
+    },
+    {
+      path: "/login",
+      element: <LoginPage/>,
+    },
+    {
+      path: "/register",
+      element: <RegisterPage/>
+    }
 ]);
 
 export function Router() {

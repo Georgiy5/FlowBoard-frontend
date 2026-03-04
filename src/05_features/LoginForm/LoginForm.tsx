@@ -19,7 +19,7 @@ export default function LoginForm () {
         console.log(email)
         event.preventDefault()
         try {
-            await login({email: email, password: password })
+            await login({email: email, password: password }).unwrap()
             setEmail('')
             setPassword('') 
         } catch (error) {
@@ -53,7 +53,7 @@ export default function LoginForm () {
                 text={'Войти'}
                 onClick={auth}
             />
-            <p>Ещё нет аккаунта? <Link to={'/register'}> Зарегистрироваться</Link></p>
+            <p>Ещё нет аккаунта? <Link to={'/register'}>Зарегистрироваться</Link></p>
         </form>
 
     )

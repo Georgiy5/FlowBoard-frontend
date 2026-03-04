@@ -1,0 +1,10 @@
+.column {
+    background-color: var(--border);
+    height: 80vh;
+    width: 25vw;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}
