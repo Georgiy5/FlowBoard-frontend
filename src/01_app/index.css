@@ -8,9 +8,11 @@ html, body, #root {
 :root {
   --font: "Open Sans", sans-serif;
   --primary-color:rgb(79, 70, 229);
+  --logo:rgb(102, 95, 239);
   --primary-color-hover: rgb(109, 103, 220);
   --text-color: #fff;
   --border: rgb(222, 224, 231);
+  --shadow: rgba(0, 0, 0, 0.5);
   /* --primary-hover-color: #e76642; */
   /* --text-color: #000000;
   --text-secondary-color: #5B5B5E;

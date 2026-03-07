@@ -4,11 +4,38 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid var(--border);
-    border-right: 1px solid var(--border);
 }
 
 .logo {
+    box-sizing: border-box;
     width: 40px;
     height: 40px;
+    padding: 3px;
+    background-color: var(--logo);
+    border-radius: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.square {
+    border-radius: 25%;
+    width: 9px;
+    height: 9px;
+    border: 2px solid white;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black
 }

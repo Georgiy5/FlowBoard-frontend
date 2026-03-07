@@ -90,6 +90,11 @@ interface PostColumn {
     title: string,
     boardId: number
 }
+interface PostTask {
+    title: string,
+    description: string,
+    columnId: number
+}
  
 export const boardsApi = createApi({
     reducerPath: 'boards',
@@ -136,7 +141,32 @@ export const boardsApi = createApi({
                 body: newColumn
             }),
             invalidatesTags: ['Columns']
-        })
+        }),
+
+        postTask: builder.mutation<Task, PostTask>({
+            query: (newTask) => ({
+                url: 'tasks',
+                method: 'POST',
+                body: newTask
+            }),
+            invalidatesTags: ['Columns']
+        }),
+
+        deleteTask: builder.mutation<Task, number>({
+            query: (id) => ({
+                url: `tasks/${id}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['Columns']
+        }),
+
+        deleteColumn: builder.mutation<Column, number>({
+            query: (id) => ({
+                url: `columns/${id}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['Columns']
+        }),        
 
     })
 
@@ -147,5 +177,8 @@ export const {
     usePostBoardMutation,
     useGetBoardsByIdQuery,
     useGetBoardColumnsByIdQuery,
-    usePostColumnMutation
+    usePostColumnMutation,
+    usePostTaskMutation,
+    useDeleteTaskMutation,
+    useDeleteColumnMutation
 } = boardsApi

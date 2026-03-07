@@ -1,4 +1,5 @@
 export interface TaskCardProps {
     title: string,
-    description: string
+    description: string,
+    onClick: () => void
 }

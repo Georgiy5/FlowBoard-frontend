@@ -18,6 +18,7 @@ export default function BoardCard ({title, onClick} : BoardCardProps) {
                 descripton
             </div>
             <Button
+                appearance={'small'}
                 text={'открыть'}
                 onClick={onClick}
             />

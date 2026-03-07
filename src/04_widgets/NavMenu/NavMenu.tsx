@@ -11,7 +11,9 @@ export default function NavMenu () {
 
     return (
         <div className={cn(styles['.navbar'])}>
-            <Logo/>
+            <Logo
+                classname={'black'}
+            />
             <NavList/>
         </div>
 

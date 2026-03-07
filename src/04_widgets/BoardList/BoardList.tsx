@@ -5,7 +5,7 @@ import { openBoardModal } from "../../06_entities/store/boardModalSlice";
 import Button from "../../07_shared/ui/Button/Button";
 import styles from './BoardList.module.css'
 // cn можно убрать, если не нужно объединять классы, или оставить для условных классов
-import cn from 'classnames' 
+
 // Убрали Navigate, так как он не используется
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
@@ -36,6 +36,7 @@ const handleCardClick = useCallback((id: string | number) => {
             <div className={styles.header}>
                 <p className={styles.title}>Ваши доски</p>
                 <Button
+                    appearance={'big'}
                     onClick={handleCreateBoard}
                     text={'Создать доску'}
                 />

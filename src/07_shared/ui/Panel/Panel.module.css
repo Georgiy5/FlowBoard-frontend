@@ -1,0 +1,60 @@
+.panel {
+    width: 50vw;
+    height: 100vh;
+    border-right: 1px solid black;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 100px;
+}
+
+@media(width<1024px) {
+    .panel {
+        display: none;
+    }
+}
+
+.description {
+    margin-top: 30px;
+    color: white;
+    width: 70%;
+    line-height: 200%;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.figures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    width: fit-content
+}
+
+.figure {
+    background-color: var(--logo);
+    width: 120px;
+    height: 130px;
+    border-radius: 10px;
+}
+
+.figure1 {
+    height: 75%;
+}
+.figure2 {
+
+}
+.figure3 {
+    height: 68%;
+}
+.figure4 {
+    height: 85%;
+}
+.figure5 {
+    height: 68%;
+}
+.figure6 {
+}

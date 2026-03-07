@@ -3,23 +3,28 @@ import { useAppDispatch, useAppSelector } from '../../01_app/providers/store/hoo
 import Button from '../../07_shared/ui/Button/Button'
 import CloseButton from '../../07_shared/ui/CloseButton/CloseButton'
 import Input from '../../07_shared/ui/Input/Input'
-import styles from './CreateColumnModal.module.css'
+import styles from './CreateTaskModal.module.css'
 import cn from 'classnames'    
-import { closeColumnModal } from '../../06_entities/store/columnModalSlice'
-import { usePostColumnMutation } from '../../06_entities/store/boardsApi'
+import { usePostTaskMutation } from '../../06_entities/store/boardsApi'
+import { closeTaskModal } from '../../06_entities/store/taskModalSlice'
 
-export default function CreateColumnModal ({boardId} : {boardId : number}) {
+export default function CreateTaskModal () {
 
-    const isActive = useAppSelector(state => state.columnModal.isActive)
+    const isActive = useAppSelector(state => state.taskModal.isActive)
+    const selectedColumn = useAppSelector(state => state.taskModal.selectedColumn)
     const dispatch = useAppDispatch()
     const [title, setTitle] = useState('')
+    const [descr, setDescr] = useState('')
 
-    const [postBoard, {data}] = usePostColumnMutation()
-    
+    const [postTask, {data}] = usePostTaskMutation()    
     const post = () => {
-        postBoard({title: title, boardId: boardId})
-        dispatch(closeColumnModal())
-        setTitle('')
+        if (selectedColumn) {
+            postTask({title, description: descr, columnId: selectedColumn})
+            dispatch(closeTaskModal())
+            setTitle('')
+            setDescr('')
+        }
+
     }
 
     useEffect(() => {
@@ -33,7 +38,7 @@ export default function CreateColumnModal ({boardId} : {boardId : number}) {
         })}
             onClick={(event: React.MouseEvent<HTMLDivElement>) => {
                 event.stopPropagation()
-                dispatch(closeColumnModal())
+                dispatch(closeTaskModal())
             }}        
         >
             <div 
@@ -43,14 +48,20 @@ export default function CreateColumnModal ({boardId} : {boardId : number}) {
                 <div className={cn(styles['crossContainer'])}>
                     <CloseButton
                         classN={'close'}
-                        onClick={() => dispatch(closeColumnModal())}
+                        onClick={() => dispatch(closeTaskModal())}
                     />
                 </div>
                 <Input
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value)}
                     value={title}
                     type={'text'}
-                    placeholder={'Название колонки'}
+                    placeholder={'Название задачи'}
+                />
+                <Input
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setDescr(event.target.value)}
+                    value={descr}
+                    type={'text'}
+                    placeholder={'Описание задачи'}
                 />
                 <Button
                     appearance={'big'}

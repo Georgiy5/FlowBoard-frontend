@@ -53,6 +53,7 @@ export default function CreateBoardModal () {
                     placeholder={'Название доски'}
                 />
                 <Button
+                    appearance={'big'}
                     onClick={post}
                     text={'Создать'}
                 />

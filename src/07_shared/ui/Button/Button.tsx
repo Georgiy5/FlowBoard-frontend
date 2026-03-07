@@ -7,13 +7,18 @@ export default function Button (props: ButtonProps) {
     
     const {
         text,
-        onClick
+        onClick,
+        appearance
     } = props
+    
 
     return (
         <button 
             onClick={onClick} 
-            className={cn(styles['button'])}
+            className={cn(styles['button'], {
+                [styles['big']] : appearance == 'big',
+                [styles['small']] : appearance == 'small',
+            })}
         >{text}
         </button>
     )

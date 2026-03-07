@@ -3,7 +3,7 @@ import Input from "../../07_shared/ui/Input/Input";
 import cn from 'classnames'
 import styles from './RegisterForm.module.css'
 import { useEffect, useState, type ChangeEvent, type MouseEvent} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../06_entities/store/loginApi";
 
 
@@ -12,8 +12,9 @@ export default function RegisterForm () {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
+    const navigate = useNavigate()
 
-    const [register, {data}] = useRegisterMutation()
+    const [register, {data, isSuccess}] = useRegisterMutation()
 
     const authRegister = async (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
@@ -30,6 +31,7 @@ export default function RegisterForm () {
     useEffect(() => {
         if (data) {
             localStorage.setItem('token', data?.access_token)
+            navigate('/')
         }
     }, [data])
 
@@ -57,6 +59,7 @@ export default function RegisterForm () {
                 onChange={(event : ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}               
             /> 
             <Button
+                appearance={'big'}
                 text={'Зарегистрироваться'}
                 onClick={authRegister}
             />

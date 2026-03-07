@@ -3,6 +3,7 @@ import { loginApi } from "../../../06_entities/store/loginApi";
 import { boardsApi } from "../../../06_entities/store/boardsApi";
 import { boardModalSlice } from "../../../06_entities/store/boardModalSlice";
 import { columnModalSlice } from "../../../06_entities/store/columnModalSlice";
+import { taskModalSlice } from "../../../06_entities/store/taskModalSlice";
 
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
         [loginApi.reducerPath] : loginApi.reducer,
         [boardsApi.reducerPath] : boardsApi.reducer,
         boardModal: boardModalSlice.reducer,
-        columnModal: columnModalSlice.reducer
+        columnModal: columnModalSlice.reducer,
+        taskModal: taskModalSlice.reducer
     },
 
   middleware: (getDefaultMiddleware) =>
