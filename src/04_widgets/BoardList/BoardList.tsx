@@ -11,24 +11,21 @@ import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 
 export default function BoardList() {
+
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-
     const { data, isLoading, isError, error } = useGetBoardsQuery()
 
-    // Обработчик вынесен и обернут в useCallback для стабильности ссылки
     const handleCreateBoard = useCallback(() => {
         dispatch(openBoardModal())
     }, [dispatch])
 
-    // Обработчик клика по карточке
-const handleCardClick = useCallback((id: string | number) => {
-        navigate(`/boards/${id}`);
-}, [navigate]);
+    const handleCardClick = useCallback((id: string | number) => {
+            navigate(`/boards/${id}`);
+    }, [navigate]);
 
     if (isLoading) return <div>Загрузка...</div>;
     if (isError) return <div>Ошибка: {JSON.stringify(error)}</div>;
-    // Проверка на массив (защита от неожиданной структуры данных)
     if (!data || !Array.isArray(data)) return <div>Нет данных</div>;
 
     return (
