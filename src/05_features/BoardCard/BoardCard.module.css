@@ -6,12 +6,18 @@
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
+    box-shadow: 1px 1px var(--shadow);
+    transition: 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 3px var(--shadow);
 }
 
 .cube {
-    background-color: blue;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,12 +25,18 @@
 }
 
 .cubeSvg {
-    width: 10px;
-    height: 10px;
+    width: 27px;
+    height: 27px;
 }
 
 .header {
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }

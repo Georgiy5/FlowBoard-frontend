@@ -11,13 +11,16 @@ export default function NavList () {
     return (
         <div className={cn(styles['list'])}>
             <NavButton
-                text={'Dashboard'}
+                source={'board.svg'}
+                text={'Доски'}
             />
             <NavButton
-                text={'My Boards'}
+                source={'favorite.svg'}
+                text={'Избранное'}
             />
             <NavButton
-                text={'Settings'}
+                source={'settings.svg'}
+                text={'Настройки'}
             />
         </div>
     )

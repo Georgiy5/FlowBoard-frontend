@@ -63,7 +63,7 @@ export default function RegisterForm () {
                 text={'Зарегистрироваться'}
                 onClick={authRegister}
             />
-            <p>Уже есть аккаунт? <Link to={'/login'}>Войти</Link></p>
+            <p className={styles.text}>Уже есть аккаунт? <Link to={'/login'}>Войти</Link></p>
         </form>
 
     )
