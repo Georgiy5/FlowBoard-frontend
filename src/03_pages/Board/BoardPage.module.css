@@ -1,4 +1,5 @@
-.container {
-    display: flex;
-    gap: 20px;
+.page {
+    background-color: var(--nav);
+    height: 100vh;
+
 }

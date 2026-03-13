@@ -1,10 +1,72 @@
 .column {
     background-color: var(--border);
     height: 80vh;
-    width: 25vw;
+    min-width: 25vw;
+    border-radius: 10px;
+    padding: 15px 25px;
 }
 
 .container {
+    padding: 50px;
+    height: 90%;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 50px;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.header {
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dots {
+    background: transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted var(--primary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    cursor:pointer;
+}
+
+.dotsSVG {
+    width: 100%;
+
+}
+
+.dots:hover {
+    background-color: var(--nav);
+}
+
+.column:hover .dots {
+    display: flex;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.taskList {
+    box-sizing: border-box;
+    height: 90%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
 }

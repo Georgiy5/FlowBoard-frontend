@@ -9,8 +9,18 @@
 
 .button:hover {
    background-color: var(--primary-color-hover);
+   cursor: pointer;
 }
 
 .small {
     width: 30%;
+}
+
+.deleteTask {
+    color: var(--border);
+    background-color: transparent;
+    border: 1px dotted var(--primary-color);
+    width: 150px;
+    height: 20px;
+    border-radius: 5px;
 }

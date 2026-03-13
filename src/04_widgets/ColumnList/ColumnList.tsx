@@ -8,8 +8,9 @@ import Button from '../../07_shared/ui/Button/Button'
 import { useAppDispatch } from '../../01_app/providers/store/hooks'
 import { openTaskModal } from '../../06_entities/store/taskModalSlice'
 import CreateTaskModal from '../../05_features/CreateTaskModal/CreateTaskModal'
+import type { ColumnProps } from './type'
 
-export default function Column () {
+export default function Column ({tasks, columns} : ColumnProps) {
     
     const { id } = useParams()
     const {data} = useGetBoardColumnsByIdQuery(Number(id))
@@ -24,6 +25,22 @@ export default function Column () {
     }, [data])
 
 
+    useEffect(() => {
+        if (data) {
+            let count = 0
+            data.map(e => count += e.tasks.length)
+            tasks(count)
+        }
+  
+    }, [data])
+
+    useEffect(() => {
+        if (data) {
+            columns(data.length)
+        }
+  
+    }, [data])
+
     return (
         <div className={cn(styles['container'])}>
 
@@ -31,19 +48,15 @@ export default function Column () {
                 <div
                     className={styles['column']}
                     key={e.id}
-                >
-                    <Button
-                        text={'Удалить колонку'}
-                        appearance={'small'}
-                        onClick={() => deleteColumn(e.id)}
-                    />
-                    <p>{e.title}</p>
-                    <Button
-                        appearance={'small'}
-                        text={'добавить задачу'}
-                        onClick={() => dispatch(openTaskModal(e.id))}
-                    />
-                    <div>
+                >   
+                    <div className={styles.header}>
+                        <p className={styles.title}>{e.title}</p>
+                        <div className={styles.buttons}>
+                            <button onClick={() => dispatch(openTaskModal(e.id))} className={styles.dots}><img className={styles.dotsSVG} src="/Plus.svg"/></button>
+                            <button onClick={() => deleteColumn(e.id)} className={styles.dots}><img className={styles.dotsSVG} src="/bucket2.svg"/></button>
+                        </div>
+                    </div>
+                    <div className={styles.taskList}>
                         {e.tasks.map(task => (
                             <TaskCard
                                 onClick={() => deleteTask(task.id)}
@@ -57,6 +70,8 @@ export default function Column () {
                 </div>
             ))}
             <CreateTaskModal/>
+
+
         </div>
     )
 }

@@ -1,19 +1,31 @@
 .card {
     width: 240px;
     height: 90px;
-    background-color: transparent;
+    background-color: white;
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
     box-shadow: 1px 1px var(--shadow);
     transition: 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card:hover {
     transform: translateY(-2px);
     box-shadow: 3px 3px var(--shadow);
 }
+
+.card:hover .title {
+    transform: translateY(-2px);
+}
+
+.card:hover .cube {
+    transform: translateY(-2px);
+}
+
 
 .cube {
     width: 30px;
@@ -39,4 +51,41 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
+}
+
+
+.dots {
+    background: transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-left: auto;
+    cursor:pointer;
+}
+
+.dots:hover {
+    background-color: var(--nav);
+}
+
+.card:hover .dots {
+    display: flex;
+}
+
+.countContainer {
+    width: 100%;
+    display: none;
+    justify-content: flex-end;
+}
+
+.count {
+    color: var(--border);
+    font-size: 12px;
+}
+
+.card:hover .countContainer {
+    display: flex;
 }

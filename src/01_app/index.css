@@ -8,7 +8,7 @@ html, body, #root {
 :root {
   --font: "Open Sans", sans-serif;
   --primary-color:rgb(79, 70, 229);
-  --nav:rgba(150, 147, 221, 0.04);
+  --nav:rgba(178, 176, 218, 0.1);
   --logo:rgb(102, 95, 239);
   --primary-color-hover: rgb(109, 103, 220);
   --text-color: #fff;

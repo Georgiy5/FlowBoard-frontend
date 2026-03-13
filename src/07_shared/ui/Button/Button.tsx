@@ -18,6 +18,7 @@ export default function Button (props: ButtonProps) {
             className={cn(styles['button'], {
                 [styles['big']] : appearance == 'big',
                 [styles['small']] : appearance == 'small',
+                [styles['deleteTask']] : appearance == 'deleteTask',
             })}
         >{text}
         </button>

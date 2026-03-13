@@ -28,6 +28,12 @@ interface PostBoard {
     ownerId: number
 }
 
+interface DeleteBoard {
+    id: number,
+    title: string,
+    ownerId: number
+}
+
 interface TitleOfNewBoard {
     title: string
 }
@@ -134,6 +140,15 @@ export const boardsApi = createApi({
             providesTags: ['Columns']
         }),
 
+        deleteBoard : builder.mutation<DeleteBoard, number>({
+            query : (id) => ({
+                url: `boards/${id}`,
+                method: 'DELETE',
+                body: id
+            }),
+            invalidatesTags: ['Boards']
+        }),
+
         postColumn: builder.mutation<Column, PostColumn>({
             query: (newColumn) => ({
                 url: 'columns',
@@ -177,6 +192,7 @@ export const {
     usePostBoardMutation,
     useGetBoardsByIdQuery,
     useGetBoardColumnsByIdQuery,
+    useDeleteBoardMutation,
     usePostColumnMutation,
     usePostTaskMutation,
     useDeleteTaskMutation,

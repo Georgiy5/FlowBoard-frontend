@@ -1,4 +1,6 @@
 export interface BoardCardProps {
     title: string,
-    onClick: () => void
+    id: number,
+    onClick: () => void,
+    count: number
 }

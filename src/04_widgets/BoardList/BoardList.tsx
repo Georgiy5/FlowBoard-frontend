@@ -20,7 +20,8 @@ export default function BoardList() {
         dispatch(openBoardModal())
     }, [dispatch])
 
-    const handleCardClick = useCallback((id: string | number) => {
+    const handleCardClick = useCallback((id: string | number,) => {
+
             navigate(`/boards/${id}`);
     }, [navigate]);
 
@@ -41,6 +42,8 @@ export default function BoardList() {
             <div className={styles.list}>
                 {data.map((el) => (
                     <BoardCard
+                        count={el.columns.length}
+                        id={el.id}
                         onClick={() => handleCardClick(el.id)}
                         key={el.id}
                         title={el.title}

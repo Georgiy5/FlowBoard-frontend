@@ -1,8 +1,27 @@
 .card {
-    width: 90%;
-    height: 150px;
-    background-color: blanchedalmond;
+    width: 100%;
+    max-height: 150px;
+    background-color: white;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+.title {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: var(--border);
+    font-weight: bold;
 }
