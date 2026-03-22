@@ -1,5 +1,5 @@
 
-import { useAppSelector } from '../../../01_app/providers/store/hooks'
+import { useAppSelector } from '../../../06_entities/hooks/hooks'
 import styles from './Logo.module.css'
 import cn from 'classnames'
 

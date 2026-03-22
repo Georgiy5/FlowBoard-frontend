@@ -1,23 +1,23 @@
 import cn from 'classnames'
 import styles from './ColumnList.module.css'
-import TaskCard from '../../05_features/TaskCard/TaskCard'
 import { useParams } from 'react-router-dom'
-import { useDeleteColumnMutation, useDeleteTaskMutation, useGetBoardColumnsByIdQuery } from '../../06_entities/store/boardsApi'
+import { useDeleteColumnMutation, useDeleteTaskMutation, useGetBoardColumnsByIdQuery } from '../../06_entities/api/boardsApi'
 import { useEffect } from 'react'
-import Button from '../../07_shared/ui/Button/Button'
-import { useAppDispatch } from '../../01_app/providers/store/hooks'
-import { openTaskModal } from '../../06_entities/store/taskModalSlice'
+import { useAppDispatch } from '../../06_entities/hooks/hooks'
+import { openTaskModal } from '../../05_features/CreateTaskModal/model/taskModalSlice'
 import CreateTaskModal from '../../05_features/CreateTaskModal/CreateTaskModal'
 import type { ColumnProps } from './type'
+import TaskList from '../../05_features/TasksList/TaskList'
+
+
 
 export default function Column ({tasks, columns} : ColumnProps) {
+
     
     const { id } = useParams()
     const {data} = useGetBoardColumnsByIdQuery(Number(id))
     const dispatch = useAppDispatch()
-    const [deleteTask] = useDeleteTaskMutation()
     const [deleteColumn] = useDeleteColumnMutation()
-
 
 
     useEffect(() => {
@@ -41,6 +41,7 @@ export default function Column ({tasks, columns} : ColumnProps) {
   
     }, [data])
 
+
     return (
         <div className={cn(styles['container'])}>
 
@@ -53,25 +54,20 @@ export default function Column ({tasks, columns} : ColumnProps) {
                         <p className={styles.title}>{e.title}</p>
                         <div className={styles.buttons}>
                             <button onClick={() => dispatch(openTaskModal(e.id))} className={styles.dots}><img className={styles.dotsSVG} src="/Plus.svg"/></button>
-                            <button onClick={() => deleteColumn(e.id)} className={styles.dots}><img className={styles.dotsSVG} src="/bucket2.svg"/></button>
+                            <button 
+                                onClick={() => {
+                                    if (e.tasks.length === 0) {
+                                        deleteColumn(e.id)
+                                    }
+
+                                }} 
+                                className={styles.dots}><img className={styles.dotsSVG} src="/bucket2.svg"/></button>
                         </div>
                     </div>
-                    <div className={styles.taskList}>
-                        {e.tasks.map(task => (
-                            <TaskCard
-                                onClick={() => deleteTask(task.id)}
-                                key={task.id}
-                                title={task.title}
-                                description={task.description}
-                            />
-                        ))}
-                    </div>
-
+                    <TaskList data={e}/>
                 </div>
             ))}
             <CreateTaskModal/>
-
-
         </div>
     )
 }

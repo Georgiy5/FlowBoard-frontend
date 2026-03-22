@@ -4,7 +4,7 @@ import cn from 'classnames'
 import styles from './LoginForm.module.css'
 import { useEffect, useState, type ChangeEvent, type MouseEvent} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../../06_entities/store/loginApi";
+import { useLoginMutation } from "../../06_entities/api/loginApi";
 
 
 export default function LoginForm () {

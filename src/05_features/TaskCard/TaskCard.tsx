@@ -3,9 +3,7 @@ import styles from './TaskCard.module.css'
 import Button from "../../07_shared/ui/Button/Button";
 
 
-export default function ({title, description, onClick} : TaskCardProps) {
-
-
+export default function ({title, description, onClick, id} : TaskCardProps) {
     return (
         <div className={styles.card}>
             <p className={styles.title}>{title}</p>

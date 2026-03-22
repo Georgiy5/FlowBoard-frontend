@@ -2,7 +2,7 @@ import cn from 'classnames'
 import styles from './BoardCard.module.css'
 import type { BoardCardProps } from './types'
 import { useState } from 'react';
-import { useDeleteBoardMutation } from '../../06_entities/store/boardsApi';
+import { useDeleteBoardMutation } from '../../06_entities/api/boardsApi';
 
 export default function BoardCard ({title, onClick, id, count} : BoardCardProps) {
 

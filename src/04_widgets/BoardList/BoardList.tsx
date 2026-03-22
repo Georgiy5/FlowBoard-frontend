@@ -1,7 +1,7 @@
-import { useAppDispatch } from "../../01_app/providers/store/hooks";
+import { useAppDispatch } from "../../06_entities/hooks/hooks";
 import BoardCard from "../../05_features/BoardCard/BoardCard";
-import { useGetBoardsQuery } from "../../06_entities/store/boardsApi";
-import { openBoardModal } from "../../06_entities/store/boardModalSlice";
+import { useGetBoardsQuery } from "../../06_entities/api/boardsApi";
+import { openBoardModal } from "../../05_features/CreateBoardModal/model/boardModalSlice";
 import Button from "../../07_shared/ui/Button/Button";
 import styles from './BoardList.module.css'
 // cn можно убрать, если не нужно объединять классы, или оставить для условных классов

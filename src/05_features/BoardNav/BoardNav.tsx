@@ -1,8 +1,8 @@
 import type { BoardNavProps } from "./type";
 import styles from './BoardNav.module.css'
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../01_app/providers/store/hooks";
-import { openColumnModal } from "../../06_entities/store/columnModalSlice";
+import { useAppDispatch } from "../../06_entities/hooks/hooks";
+import { openColumnModal } from "../CreateColumnModal/model/columnModalSlice";
 import Button from "../../07_shared/ui/Button/Button";
 
 

@@ -1,16 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { loginApi } from "../../../06_entities/store/loginApi";
-import { boardsApi } from "../../../06_entities/store/boardsApi";
-import { boardModalSlice } from "../../../06_entities/store/boardModalSlice";
-import { columnModalSlice } from "../../../06_entities/store/columnModalSlice";
-import { taskModalSlice } from "../../../06_entities/store/taskModalSlice";
-import { navSlice } from "../../../06_entities/store/navSlice";
+import { api } from "../../../06_entities/api/baseApi";
+import { boardModalSlice } from "../../../05_features/CreateBoardModal/model/boardModalSlice";
+import { columnModalSlice } from "../../../05_features/CreateColumnModal/model/columnModalSlice";
+import { taskModalSlice } from "../../../05_features/CreateTaskModal/model/taskModalSlice";
+import { navSlice } from "../../../04_widgets/NavMenu/model/navSlice";
 
 
 export const store = configureStore({
     reducer: {
-        [loginApi.reducerPath] : loginApi.reducer,
-        [boardsApi.reducerPath] : boardsApi.reducer,
+        [api.reducerPath] : api.reducer,
         boardModal: boardModalSlice.reducer,
         columnModal: columnModalSlice.reducer,
         taskModal: taskModalSlice.reducer,
@@ -18,7 +16,7 @@ export const store = configureStore({
     },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(loginApi.middleware, boardsApi.middleware),
+    getDefaultMiddleware().concat(api.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

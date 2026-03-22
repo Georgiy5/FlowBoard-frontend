@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { api } from "./baseApi";
 
 interface Owner {
     id: number,
@@ -101,20 +101,14 @@ interface PostTask {
     description: string,
     columnId: number
 }
+
+interface UpdateTask {
+    id: number,
+    title: string,
+    order: number
+}
  
-export const boardsApi = createApi({
-    reducerPath: 'boards',
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3000/',
-        prepareHeaders: (headers) => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                headers.set('authorization', `Bearer ${token}`);
-            }
-            return headers;
-        },
-    }),
-    tagTypes: ['Boards', 'Columns'],
+export const boardsApi = api.injectEndpoints({
     endpoints: (builder) => ({
         
         getBoards: builder.query<Boards[], void>({
@@ -175,6 +169,20 @@ export const boardsApi = createApi({
             invalidatesTags: ['Columns']
         }),
 
+        updateTask: builder.mutation<Task, UpdateTask>({
+            query: ({ id, ...task}) => ({
+                url: `tasks/${id}`,
+                method: 'PUT',
+                body: task
+            }),
+            invalidatesTags: ['Columns']
+        }),
+
+        getTasksByColumn: builder.query<Task[] , number>({
+            query: (id) => `tasks/column/${id}`,
+            providesTags: ['Columns']
+        }),
+
         deleteColumn: builder.mutation<Column, number>({
             query: (id) => ({
                 url: `columns/${id}`,
@@ -195,6 +203,8 @@ export const {
     useDeleteBoardMutation,
     usePostColumnMutation,
     usePostTaskMutation,
+    useUpdateTaskMutation,
     useDeleteTaskMutation,
-    useDeleteColumnMutation
+    useDeleteColumnMutation,
+    useGetTasksByColumnQuery
 } = boardsApi

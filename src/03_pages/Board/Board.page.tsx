@@ -1,13 +1,13 @@
 import cn from 'classnames'
 import styles from './BoardPage.module.css'
-import { useGetBoardsByIdQuery } from '../../06_entities/store/boardsApi'
+import { useGetBoardsByIdQuery } from '../../06_entities/api/boardsApi'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ColumnList from '../../04_widgets/ColumnList/ColumnList'
 import Button from '../../07_shared/ui/Button/Button'
 import CreateColumnModal from '../../05_features/CreateColumnModal/CreateColumn'
-import { useAppDispatch } from '../../01_app/providers/store/hooks'
-import { openColumnModal } from '../../06_entities/store/columnModalSlice'
+import { useAppDispatch } from '../../06_entities/hooks/hooks'
+import { openColumnModal } from '../../05_features/CreateColumnModal/model/columnModalSlice'
 import BoardNav from '../../05_features/BoardNav/BoardNav'
 
 

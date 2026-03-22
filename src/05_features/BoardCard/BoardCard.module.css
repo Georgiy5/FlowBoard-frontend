@@ -20,6 +20,7 @@
 
 .card:hover .title {
     transform: translateY(-2px);
+    max-width: 150px;
 }
 
 .card:hover .cube {
@@ -50,7 +51,8 @@
 .title {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 

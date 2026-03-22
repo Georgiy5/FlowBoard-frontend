@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../01_app/providers/store/hooks'
+import { useAppDispatch, useAppSelector } from '../../06_entities/hooks/hooks'
 import Button from '../../07_shared/ui/Button/Button'
 import CloseButton from '../../07_shared/ui/CloseButton/CloseButton'
 import Input from '../../07_shared/ui/Input/Input'
 import styles from './CreateColumnModal.module.css'
 import cn from 'classnames'    
-import { closeColumnModal } from '../../06_entities/store/columnModalSlice'
-import { usePostColumnMutation } from '../../06_entities/store/boardsApi'
+import { closeColumnModal } from './model/columnModalSlice'
+import { usePostColumnMutation } from '../../06_entities/api/boardsApi'
 
 export default function CreateColumnModal ({boardId} : {boardId : number}) {
 

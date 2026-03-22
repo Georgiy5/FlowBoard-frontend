@@ -3,7 +3,7 @@ import NavMenu from "../../04_widgets/NavMenu/NavMenu";
 import cn from 'classnames'
 import styles from './Dashboard.module.css'
 import CreateBoardModal from "../../05_features/CreateBoardModal/CreateBoardModal";
-import { useAppSelector } from "../../01_app/providers/store/hooks";
+import { useAppSelector } from "../../06_entities/hooks/hooks";
 
 export default function DashboardPage() {
 

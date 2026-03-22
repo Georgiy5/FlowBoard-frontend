@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 import styles from './ToggleNav.module.css'
 import type { ToggleNavProps } from './type'
-import { useAppDispatch, useAppSelector } from '../../01_app/providers/store/hooks'
-import { toggleNav } from '../../06_entities/store/navSlice'
+import { useAppDispatch, useAppSelector } from '../../06_entities/hooks/hooks'
+import { toggleNav } from '../../04_widgets/NavMenu/model/navSlice'
 
 export default function ToggleNav () {
 

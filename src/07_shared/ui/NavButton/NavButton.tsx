@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import styles from './NavButton.module.css';
 import type { NavButtonProps } from './type';
-import { useAppSelector } from '../../../01_app/providers/store/hooks';
+import { useAppSelector } from '../../../06_entities/hooks/hooks';
 
 
 export default function NavButton (props: NavButtonProps) {

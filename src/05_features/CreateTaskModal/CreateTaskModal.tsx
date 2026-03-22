@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../01_app/providers/store/hooks'
+import { useAppDispatch, useAppSelector } from '../../06_entities/hooks/hooks'
 import Button from '../../07_shared/ui/Button/Button'
 import CloseButton from '../../07_shared/ui/CloseButton/CloseButton'
 import Input from '../../07_shared/ui/Input/Input'
 import styles from './CreateTaskModal.module.css'
 import cn from 'classnames'    
-import { usePostTaskMutation } from '../../06_entities/store/boardsApi'
-import { closeTaskModal } from '../../06_entities/store/taskModalSlice'
+import { usePostTaskMutation } from '../../06_entities/api/boardsApi'
+import { closeTaskModal } from './model/taskModalSlice'
 
 export default function CreateTaskModal () {
 
