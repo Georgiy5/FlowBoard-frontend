@@ -1,9 +1,0 @@
-.taskList {
-    box-sizing: border-box;
-    height: 90%;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    overflow-y: scroll;
-}
