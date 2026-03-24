@@ -37,14 +37,14 @@
 .header {
   display: flex;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: min(200px, 60vw);
+  max-width: 60%;
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--text-primary);

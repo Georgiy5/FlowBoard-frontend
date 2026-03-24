@@ -1,5 +1,6 @@
 export interface TaskCardProps {
     title: string,
     description: string,
-    onClick: () => void
+    onClick: (event: React.MouseEvent) => void,
+    id: number
 }

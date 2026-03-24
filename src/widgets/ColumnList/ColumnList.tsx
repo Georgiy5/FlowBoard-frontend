@@ -63,7 +63,7 @@ export default function Column ({tasks, columns} : ColumnProps) {
                                 className={styles.dots}><img className={styles.dotsSVG} src="/bucket2.svg"/></button>
                         </div>
                     </div>
-                    <TaskList data={e}/>
+                    <TaskList column={e}/>
                 </div>
             ))}
             <CreateTaskModal/>

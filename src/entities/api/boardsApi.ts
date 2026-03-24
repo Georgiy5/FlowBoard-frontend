@@ -38,9 +38,6 @@ interface TitleOfNewBoard {
     title: string
 }
 
-interface ID {
-    id: number
-}
 
 interface Task {
     id: number,
@@ -107,6 +104,33 @@ interface UpdateTask {
     title: string,
     order: number
 }
+
+interface NewOrder {
+    id: number,
+    order: number
+}
+
+interface UpdateOrder {
+    id: number
+    tasks: NewOrder[]
+}
+
+interface Assignee {
+    id: number,
+    email: string,
+    password: string,
+    name: string
+}
+
+interface UpdateOrderResponse {
+    id: number,
+    title: string,
+    description: string,
+    order: number,
+    columnId: number,
+    assigneeId: number,
+    assignee: Assignee
+}
  
 export const boardsApi = api.injectEndpoints({
     endpoints: (builder) => ({
@@ -158,7 +182,7 @@ export const boardsApi = api.injectEndpoints({
                 method: 'POST',
                 body: newTask
             }),
-            invalidatesTags: ['Columns']
+            invalidatesTags: ['Tasks']
         }),
 
         deleteTask: builder.mutation<Task, number>({
@@ -166,7 +190,7 @@ export const boardsApi = api.injectEndpoints({
                 url: `tasks/${id}`,
                 method: 'DELETE'
             }),
-            invalidatesTags: ['Columns']
+            invalidatesTags: ['Tasks']
         }),
 
         updateTask: builder.mutation<Task, UpdateTask>({
@@ -175,12 +199,12 @@ export const boardsApi = api.injectEndpoints({
                 method: 'PUT',
                 body: task
             }),
-            invalidatesTags: ['Columns']
+            invalidatesTags: ['Tasks']
         }),
 
         getTasksByColumn: builder.query<Task[] , number>({
             query: (id) => `tasks/column/${id}`,
-            providesTags: ['Columns']
+            providesTags: ['Tasks']
         }),
 
         deleteColumn: builder.mutation<Column, number>({
@@ -191,6 +215,14 @@ export const boardsApi = api.injectEndpoints({
             invalidatesTags: ['Columns']
         }),        
 
+        patchOrder: builder.mutation<UpdateOrderResponse[], UpdateOrder>({
+            query: ({id, ...body}) => ({
+                url: `tasks/column/${id}/reorder`,
+                method: 'PATCH',
+                body: body
+            }),
+            invalidatesTags: ['Tasks']
+        })
     })
 
 })
@@ -206,5 +238,6 @@ export const {
     useUpdateTaskMutation,
     useDeleteTaskMutation,
     useDeleteColumnMutation,
-    useGetTasksByColumnQuery
+    useGetTasksByColumnQuery,
+    usePatchOrderMutation
 } = boardsApi
