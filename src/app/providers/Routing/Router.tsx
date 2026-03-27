@@ -3,6 +3,7 @@ import { BoardPage } from "@/pages/Board";
 import { DashboardPage } from "@/pages/Dashboard";
 import { LoginPage } from "@/pages/Login";
 import { RegisterPage } from "@/pages/Register";
+import ErrorPage from "@/pages/Error/Error.page";
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     {
       path: "/register",
       element: <RegisterPage/>
+    },
+    {
+      path: '*',
+      element: <ErrorPage/>
     }
 ]);
 
