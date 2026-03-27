@@ -26,10 +26,6 @@ export default function CreateTaskModal () {
         }
 
     }
-
-    useEffect(() => {
-        console.log(data);
-    }, [data])
     
     return (
         <div 

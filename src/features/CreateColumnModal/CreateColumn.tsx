@@ -14,17 +14,13 @@ export default function CreateColumnModal ({boardId} : {boardId : number}) {
     const dispatch = useAppDispatch()
     const [title, setTitle] = useState('')
 
-    const [postBoard, {data}] = usePostColumnMutation()
+    const [postBoard] = usePostColumnMutation()
     
     const post = () => {
         postBoard({title: title, boardId: boardId})
         dispatch(closeColumnModal())
         setTitle('')
     }
-
-    useEffect(() => {
-        console.log(data);
-    }, [data])
     
     return (
         <div 

@@ -20,11 +20,6 @@ export default function Column ({tasks, columns} : ColumnProps) {
 
 
     useEffect(() => {
-        console.log(data)
-    }, [data])
-
-
-    useEffect(() => {
         if (data) {
             let count = 0
             data.map(e => count += e.tasks.length)

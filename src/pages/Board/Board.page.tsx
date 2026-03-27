@@ -30,10 +30,6 @@ export default function BoardPage () {
 
     const {data , isLoading, isError} = useGetBoardsByIdQuery(param)
 
-    useEffect(() => {
-    console.log(data?.columns)
-    }, [data])
-
     return (
         <div className={styles.page}>
             <BoardNav 

@@ -96,7 +96,8 @@ interface PostColumn {
 interface PostTask {
     title: string,
     description: string,
-    columnId: number
+    columnId: number,
+    order?: number
 }
 
 interface UpdateTask {
@@ -221,7 +222,6 @@ export const boardsApi = api.injectEndpoints({
                 method: 'PATCH',
                 body: body
             }),
-            invalidatesTags: ['Tasks']
         })
     })
 

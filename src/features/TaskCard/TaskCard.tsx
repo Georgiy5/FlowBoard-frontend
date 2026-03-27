@@ -3,9 +3,9 @@ import styles from './TaskCard.module.css'
 import Button from "@/shared/ui/Button";
 
 
-export default function ({title, description, onClick, id, dataId} : TaskCardProps) {
+export default function ({title, description, onClick, id, dataId, titleAttr, descrAttr, columnId} : TaskCardProps) {
     return (
-        <div className={styles.card} data-id={dataId}>
+        <div className={styles.card} data-id={dataId} title-attr={titleAttr} descr-attr={descrAttr} column-id={columnId}>
             <p className={styles.title}>{title}</p>
             <p className={styles.description}>{description}</p>
             <Button

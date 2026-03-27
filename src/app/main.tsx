@@ -7,9 +7,7 @@ import { store } from '@/app/providers/store'
 
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
     <Provider store={store}>
         <App/>
     </Provider>
-  </StrictMode>,
 )
