@@ -4,16 +4,25 @@ import { DashboardPage } from "@/pages/Dashboard";
 import { LoginPage } from "@/pages/Login";
 import { RegisterPage } from "@/pages/Register";
 import ErrorPage from "@/pages/Error/Error.page";
+import ProtectedRoute from "./ProtectedRoute";
+
 
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <DashboardPage/>,
+      element: 
+      <ProtectedRoute>
+          <DashboardPage/>
+      </ProtectedRoute>
     },
     {
       path: "/boards/:id",
-      element: <BoardPage/>
+      element: 
+      <ProtectedRoute>
+          <BoardPage/>
+      </ProtectedRoute>
+          
     },
     {
       path: "/login",
