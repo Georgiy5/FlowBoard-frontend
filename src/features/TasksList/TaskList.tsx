@@ -1,11 +1,9 @@
-import { useDeleteTaskMutation, useGetTasksByColumnQuery } from "@/entities/api";
+import { tasksEndpoints, useDeleteTaskMutation, useGetTasksByColumnQuery, usePatchOrderMutation, usePostTaskMutation } from "@/entities/api";
 import { TaskCard } from "@/features/TaskCard";
 import type { NewOrder, Task, TaskListProps } from "./type";
 import styles from './TaskList.module.css'
 import { ReactSortable } from "react-sortablejs";
-import { boardsApi, usePatchOrderMutation, usePostTaskMutation } from "@/entities/api/boardsApi";
 import { useAppDispatch } from "@/app/providers/store";
-import { useMemo } from "react";
 
 
 export default function TaskList( { column } : { column: TaskListProps}) {
@@ -44,7 +42,7 @@ export default function TaskList( { column } : { column: TaskListProps}) {
                     const copy : Task[] = JSON.parse(JSON.stringify(newList))
                     const filtered = copy.filter(e => e.columnId !== column.id)
                         dispatch(
-                            boardsApi.util.updateQueryData(
+                            tasksEndpoints.util.updateQueryData(
                                 'getTasksByColumn',
                                 column.id,
                                 () => copy
@@ -94,8 +92,8 @@ export default function TaskList( { column } : { column: TaskListProps}) {
                         key={task.id}
                         titleAttr={task.title}
                         title={task.title}
-                        descrAttr={task.description}
-                        description={task.description}
+                        descrAttr={task.description ?? ''}
+                        description={task.description ?? ''}
                     />
                 )) : ''}
             </ReactSortable>
