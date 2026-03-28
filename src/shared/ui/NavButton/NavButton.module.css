@@ -36,6 +36,10 @@
   display: none;
 }
 
+.isActive {
+  background: var(--nav-strong);
+}
+
 @media (max-width: 768px) {
   .button {
     min-width: 44px;

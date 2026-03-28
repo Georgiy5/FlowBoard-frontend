@@ -6,6 +6,7 @@ import { RegisterPage } from "@/pages/Register";
 import ErrorPage from "@/pages/Error/Error.page";
 import ProtectedRoute from "./ProtectedRoute";
 import Layout from "@/pages/Layout/Layout";
+import Favorite from "@/pages/Favorite/Favorite.page";
 
 
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
         {
           element: <DashboardPage/>,
           path: '/'
+        },
+        {
+          element: <Favorite/>,
+          path: '/favorites'
         }
       ]
     },

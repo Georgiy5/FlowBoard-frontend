@@ -1,8 +1,10 @@
 import cn from 'classnames'
 import styles from './BoardCard.module.css'
 import type { BoardCardProps } from './types'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDeleteBoardMutation } from '@/entities/api';
+import { useAddFavoritesMutation, useCheckIsFavoriteQuery, useDeleteFavoriteMutation } from '@/entities/api/favorites.endpoints';
+import { hydrateRoot } from 'react-dom/client';
 
 export default function BoardCard ({title, onClick, id, count} : BoardCardProps) {
 
@@ -37,6 +39,12 @@ export default function BoardCard ({title, onClick, id, count} : BoardCardProps)
 
     }
 
+    const { data } = useCheckIsFavoriteQuery(id)
+    const [addFavorite] = useAddFavoritesMutation()
+    const [deleteFavorite] = useDeleteFavoriteMutation()
+    const isFavorite = data?.isFavorite
+    const [src, setSrc] = useState('heart.svg')
+
     return (
         <div onClick={onClick} className={cn(styles['card'])}>
             <div className={cn(styles['header'])}>
@@ -47,6 +55,15 @@ export default function BoardCard ({title, onClick, id, count} : BoardCardProps)
                 <button onClick={deleteFunc} className={styles.dots}><img className={styles.dotsSVG} src="/bucket.svg"/></button>
             </div>
             <div className={styles.countContainer}>
+                <button 
+                    className={styles.likeButton}
+                    onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        isFavorite ? deleteFavorite(id) : addFavorite(id)
+                    }}
+                >
+                    <img src={isFavorite ? 'heartLiked.svg' : 'heart.svg'} className={styles.likeSVG}/>
+                </button>
                 <p className={styles.count}>{count} {word}</p>
             </div>
         </div>

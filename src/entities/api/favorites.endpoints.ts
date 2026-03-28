@@ -23,7 +23,15 @@ export const favoritesEndpoints = api.injectEndpoints({
       invalidatesTags: ['Favorites']
     }),
     checkIsFavorite: builder.query<isFavorite, number>({
-      query: (id) => `favorites/check/${id}`
+      query: (id) => `favorites/check/${id}`,
+      providesTags: ['Favorites']
     })
 })
 })
+
+export const {
+  useGetFavoritesQuery,
+  useCheckIsFavoriteQuery,
+  useAddFavoritesMutation,
+  useDeleteFavoriteMutation
+} = favoritesEndpoints

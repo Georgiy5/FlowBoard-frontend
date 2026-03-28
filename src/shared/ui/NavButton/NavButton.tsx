@@ -9,7 +9,8 @@ export default function NavButton (props: NavButtonProps) {
     const {
         text,
         onClick,
-        source
+        source,
+        isActive
     } = props
 
     const isOpened = useAppSelector(state => state.nav.isOpened)
@@ -17,7 +18,8 @@ export default function NavButton (props: NavButtonProps) {
             <button 
                 onClick={onClick} 
                 className={cn(styles['button'], {
-                    [styles.closedButton] : !isOpened
+                    [styles.closedButton] : !isOpened,
+                    [styles.isActive] : isActive
                 })}
             >
                 <img className={styles.svg} src={source}/>
