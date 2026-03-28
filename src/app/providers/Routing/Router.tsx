@@ -5,6 +5,7 @@ import { LoginPage } from "@/pages/Login";
 import { RegisterPage } from "@/pages/Register";
 import ErrorPage from "@/pages/Error/Error.page";
 import ProtectedRoute from "./ProtectedRoute";
+import Layout from "@/pages/Layout/Layout";
 
 
 
@@ -13,8 +14,14 @@ const router = createBrowserRouter([
       path: "/",
       element: 
       <ProtectedRoute>
-          <DashboardPage/>
-      </ProtectedRoute>
+          <Layout/>
+      </ProtectedRoute>,
+      children: [
+        {
+          element: <DashboardPage/>,
+          path: '/'
+        }
+      ]
     },
     {
       path: "/boards/:id",

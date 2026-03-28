@@ -18,3 +18,9 @@ export type {
   ReorderTasksDto,
   TaskWithAssignee,
 } from './task.types'
+export type {
+  Favorite,
+  AddFavoriteResponse,
+  DeleteFavoriteResponse,
+  isFavorite
+} from './favorite.types'

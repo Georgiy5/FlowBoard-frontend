@@ -4,9 +4,7 @@ import { useGetBoardsQuery } from "@/entities/api";
 import { openBoardModal } from "@/features/CreateBoardModal";
 import Button from "@/shared/ui/Button";
 import styles from './BoardList.module.css'
-// cn можно убрать, если не нужно объединять классы, или оставить для условных классов
 
-// Убрали Navigate, так как он не используется
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 
