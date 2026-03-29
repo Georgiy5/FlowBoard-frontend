@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import styles from './ColumnList.module.css'
 import { useParams } from 'react-router-dom'
-import { useDeleteColumnMutation, useDeleteTaskMutation, useGetBoardColumnsByIdQuery } from '@/entities/api'
+import { useDeleteColumnMutation, useGetBoardColumnsByIdQuery } from '@/entities/api'
 import { useEffect } from 'react'
 import { useAppDispatch } from '@/app/providers/store'
 import { CreateTaskModal, openTaskModal } from '@/features/CreateTaskModal'

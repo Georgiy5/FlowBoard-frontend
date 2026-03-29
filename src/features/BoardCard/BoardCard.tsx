@@ -16,6 +16,10 @@ export default function BoardCard ({title, onClick, id, count} : BoardCardProps)
 
     const deleteFunc = (event : React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation()
+        if (count > 0) {
+            console.log('nelzya')
+            return
+        }
         deleteBoard(id)
     }
 
@@ -43,7 +47,6 @@ export default function BoardCard ({title, onClick, id, count} : BoardCardProps)
     const [addFavorite] = useAddFavoritesMutation()
     const [deleteFavorite] = useDeleteFavoriteMutation()
     const isFavorite = data?.isFavorite
-    const [src, setSrc] = useState('heart.svg')
 
     return (
         <div onClick={onClick} className={cn(styles['card'])}>

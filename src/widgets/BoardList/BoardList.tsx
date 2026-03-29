@@ -38,15 +38,20 @@ export default function BoardList({data, isLoading, isError, favorite} : BoardLi
                     : ''}      
             </div>
             <div className={styles.list}>
-                {data.map((el) => (
-                    <BoardCard
-                        count={el.columns.length}
-                        id={el.id}
-                        onClick={() => handleCardClick(el.id)}
-                        key={el.id}
-                        title={el.title}
-                    />
-                ))}
+                {data.length === 0 
+                    ?
+                    <p className={styles.empty}>Список пуст</p>
+                    :
+                    data.map((el) => (
+                        <BoardCard
+                            count={el.columns.length}
+                            id={el.id}
+                            onClick={() => handleCardClick(el.id)}
+                            key={el.id}
+                            title={el.title}
+                        />
+                    ))
+                }
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/store'
 import { usePostBoardMutation } from '@/entities/api'
 import { closeBoardModal } from './model/boardModalSlice'
@@ -14,7 +14,7 @@ export default function CreateBoardModal () {
     const dispatch = useAppDispatch()
     const [title, setTitle] = useState('')
 
-    const [postBoard, {data}] = usePostBoardMutation()
+    const [postBoard] = usePostBoardMutation()
     
     const post = () => {
         postBoard({title})
@@ -22,9 +22,6 @@ export default function CreateBoardModal () {
         setTitle('')
     }
 
-    useEffect(() => {
-        console.log(data);
-    }, [data])
     
     return (
         <div 

@@ -15,7 +15,7 @@ export const tasksEndpoints = api.injectEndpoints({
         method: 'POST',
         body: newTask,
       }),
-      invalidatesTags: ['Tasks'],
+      invalidatesTags: ['Tasks', 'Columns'],
     }),
 
     deleteTask: builder.mutation<Task, number>({
@@ -23,7 +23,7 @@ export const tasksEndpoints = api.injectEndpoints({
         url: `tasks/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Tasks'],
+      invalidatesTags: ['Tasks', 'Columns'],
     }),
 
     updateTask: builder.mutation<Task, UpdateTaskDto>({
