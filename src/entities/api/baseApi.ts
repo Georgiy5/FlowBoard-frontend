@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery, type BaseQueryFn, type FetchArgs, type FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: 'http://localhost:3000/',
@@ -11,9 +11,18 @@ export const baseQuery = fetchBaseQuery({
   },
 });
 
+const customBaseQuery: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (args, api, extraOptions) => {
+  const result = await baseQuery(args, api, extraOptions);
+  if (result.error?.status === 401) {
+    window.location.href = '/login';
+  }
+
+  return result;
+};
+
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery,
+  baseQuery: customBaseQuery,
   tagTypes: ['Boards', 'Columns', 'Tasks', 'Favorites'],
   endpoints: () => ({}),
 });
