@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# Проект Kanban
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Полнофункциональное веб-приложение Kanban-доски, построенное с использованием React, NestJS и PostgreSQL. Этот проект позволяет пользователям создавать и управлять Kanban-досками с колонками и задачами, включая функциональность перетаскивания, аутентификацию пользователей и избранное.
 
-Currently, two official plugins are available:
+## Функции
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Аутентификация пользователей**: Регистрация и вход с JWT-аутентификацией
+- **Управление досками**: Создание, просмотр и управление множественными Kanban-досками
+- **Организация колонок**: Организация задач в настраиваемые колонки
+- **Управление задачами**: Создание задач пользователям
+- **Перетаскивание**: Интуитивный интерфейс перетаскивания для перемещения задач между колонками
+- **Избранное**: Отметка досок как избранных для быстрого доступа
 
-## React Compiler
+## Технологический стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
+- **React 19** - Современный React с хуками и функциональными компонентами
+- **TypeScript** - Типизированный JavaScript
+- **Redux Toolkit** - Управление состоянием
+- **React Router** - Клиентская маршрутизация
+- **Vite** - Быстрый инструмент сборки и сервер разработки
+- **SortableJS** - Функциональность перетаскивания
+- **CSS Modules** - Скоупированные стили
 
-## Expanding the ESLint configuration
+## Структура проекта
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```
+kanban-project/
+├── client/          # Приложение React frontend
+│   ├── src/
+│   │   ├── app/     # Основные компоненты приложения и провайдеры
+│   │   ├── entities/# Бизнес-логика и интеграция API
+│   │   ├── features/# Компоненты конкретных функций
+│   │   ├── pages/   # Компоненты страниц
+│   │   ├── shared/  # Общие UI компоненты
+│   │   └── widgets/ # Составные UI компоненты
+│   ├── package.json
+│   └── vite.config.ts
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Предварительные требования
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Node.js (v18 или выше)
+- npm или yarn
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+## Установка
+
+1. **Клонируйте репозиторий**
+   ```bash
+   git clone <repository-url>
+   cd kanban-project
+   ```
+
+2. **Установите зависимости**
+
+   Для клиента:
+   ```bash
+   cd client
+   npm install
+   ```
+
+
+
+## Запуск приложения
+
+### Режим разработки
+
+1. **Запустите сервер backend:**
+   ```bash
+   cd server
+   npm run start:dev
+   ```
+   Сервер будет работать на `http://localhost:3000`
+
+2. **Запустите клиент frontend:**
+   ```bash
+   cd client
+   npm run dev
+   ```
+   Клиент будет работать на `http://localhost:5173`
+
+
