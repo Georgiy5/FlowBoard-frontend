@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/store'
 import Button from '@/shared/ui/Button'
 import CloseButton from '@/shared/ui/CloseButton'
@@ -7,6 +7,7 @@ import styles from './CreateColumnModal.module.css'
 import cn from 'classnames'    
 import { closeColumnModal } from './model/columnModalSlice'
 import { usePostColumnMutation } from '@/entities/api'
+import { useEscapeKey } from '@/entities/hooks'
 
 export default function CreateColumnModal ({boardId} : {boardId : number}) {
 
@@ -21,6 +22,21 @@ export default function CreateColumnModal ({boardId} : {boardId : number}) {
         dispatch(closeColumnModal())
         setTitle('')
     }
+
+    useEffect(() => {
+        if (isActive && inputRef.current) {
+            const timer = setTimeout(() => {
+            inputRef.current?.focus()
+        }, 50)
+        return () => clearTimeout(timer)
+        }
+  }, [isActive])
+
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    useEscapeKey(() => {
+        dispatch(closeColumnModal())
+    }, isActive)
     
     return (
         <div 
@@ -36,25 +52,27 @@ export default function CreateColumnModal ({boardId} : {boardId : number}) {
                 className={cn(styles['window'])}
                 onClick={(event: React.MouseEvent<HTMLDivElement>) => event.stopPropagation()}        
             >
-                <div className={cn(styles['crossContainer'])}>
-                    <CloseButton
-                        classN={'close'}
-                        onClick={() => dispatch(closeColumnModal())}
+                <form onSubmit={post} className={styles.form}>
+                    <div className={cn(styles['crossContainer'])}>
+                        <CloseButton
+                            classN={'close'}
+                            onClick={() => dispatch(closeColumnModal())}
+                        />
+                    </div>
+                    <Input
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value)}
+                        ref={inputRef}
+                        value={title}
+                        type={'text'}
+                        placeholder={'Название колонки'}
                     />
-                </div>
-                <Input
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value)}
-                    value={title}
-                    type={'text'}
-                    placeholder={'Название колонки'}
-                />
-                <Button
-                    appearance={'big'}
-                    onClick={post}
-                    text={'Создать'}
-                />
+                    <Button
+                        appearance={'big'}
+                        type='submit'
+                        text={'Создать'}
+                    />
+                </form>
             </div>
-
         </div>
     )
 }

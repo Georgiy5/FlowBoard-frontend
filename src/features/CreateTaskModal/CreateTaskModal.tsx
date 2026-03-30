@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/store'
 import Button from '@/shared/ui/Button'
 import CloseButton from '@/shared/ui/CloseButton'
@@ -7,6 +7,7 @@ import styles from './CreateTaskModal.module.css'
 import cn from 'classnames'    
 import { usePostTaskMutation } from '@/entities/api'
 import { closeTaskModal } from './model/taskModalSlice'
+import { useEscapeKey } from '@/entities/hooks'
 
 export default function CreateTaskModal () {
 
@@ -16,7 +17,7 @@ export default function CreateTaskModal () {
     const [title, setTitle] = useState('')
     const [descr, setDescr] = useState('')
 
-    const [postTask, {data}] = usePostTaskMutation()    
+    const [postTask] = usePostTaskMutation()    
     const post = () => {
         if (selectedColumn) {
             postTask({title, description: descr, columnId: selectedColumn})
@@ -26,6 +27,20 @@ export default function CreateTaskModal () {
         }
 
     }
+    useEffect(() => {
+        if (isActive && inputRef.current) {
+            const timer = setTimeout(() => {
+            inputRef.current?.focus()
+        }, 50)
+        return () => clearTimeout(timer)
+        }
+  }, [isActive])
+
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    useEscapeKey(() => {
+        dispatch(closeTaskModal())
+    }, isActive)
     
     return (
         <div 
@@ -41,31 +56,33 @@ export default function CreateTaskModal () {
                 className={cn(styles['window'])}
                 onClick={(event: React.MouseEvent<HTMLDivElement>) => event.stopPropagation()}        
             >
-                <div className={cn(styles['crossContainer'])}>
-                    <CloseButton
-                        classN={'close'}
-                        onClick={() => dispatch(closeTaskModal())}
+                <form className={styles.form} onSubmit={post}>
+                    <div className={cn(styles['crossContainer'])}>
+                        <CloseButton
+                            classN={'close'}
+                            onClick={() => dispatch(closeTaskModal())}
+                        />
+                    </div>
+                    <Input
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value)}
+                        value={title}
+                        type={'text'}
+                        placeholder={'Название задачи'}
+                        ref={inputRef}
                     />
-                </div>
-                <Input
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setTitle(event.target.value)}
-                    value={title}
-                    type={'text'}
-                    placeholder={'Название задачи'}
-                />
-                <Input
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setDescr(event.target.value)}
-                    value={descr}
-                    type={'text'}
-                    placeholder={'Описание задачи'}
-                />
-                <Button
-                    appearance={'big'}
-                    onClick={post}
-                    text={'Создать'}
-                />
+                    <Input
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setDescr(event.target.value)}
+                        value={descr}
+                        type={'text'}
+                        placeholder={'Описание задачи'}
+                    />
+                    <Button
+                        appearance={'big'}
+                        type='submit'
+                        text={'Создать'}
+                    />
+                </form>
             </div>
-
         </div>
     )
 }

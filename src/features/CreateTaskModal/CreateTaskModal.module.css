@@ -27,12 +27,15 @@
   background: var(--surface);
   padding: clamp(20px, 4vw, 28px);
   border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px -12px var(--shadow-xl);
+  border: 1px solid var(--border);
+}
+
+.form {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 16px;
-  box-shadow: 0 25px 50px -12px var(--shadow-xl);
-  border: 1px solid var(--border);
 }
 
 .crossContainer {
