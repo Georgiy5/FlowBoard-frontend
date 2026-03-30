@@ -4,7 +4,6 @@ import type { BoardCardProps } from './types'
 import React, { useState } from 'react';
 import { useDeleteBoardMutation } from '@/entities/api';
 import { useAddFavoritesMutation, useCheckIsFavoriteQuery, useDeleteFavoriteMutation } from '@/entities/api/favorites.endpoints';
-import { hydrateRoot } from 'react-dom/client';
 
 export default function BoardCard ({title, onClick, id, count} : BoardCardProps) {
 
