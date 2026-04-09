@@ -33,7 +33,7 @@ export default function LoginForm () {
             localStorage.setItem('token', data?.access_token)
             navigate('/')
         }
-    }, [data, isSuccess])
+    }, [data, isSuccess, navigate])
 
     return (
             <form className={cn(styles['form'])} >

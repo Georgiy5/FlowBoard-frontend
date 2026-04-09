@@ -1,6 +1,6 @@
 import styles from './BoardPage.module.css'
 import { useGetBoardsByIdQuery } from '@/entities/api'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ColumnList } from '@/widgets/ColumnList'
 import { BoardNav } from '@/features/BoardNav'
@@ -12,13 +12,13 @@ export default function BoardPage () {
     const [countColumns, setCountColumns] = useState<number>()
     const [countTasks, setCountTasks] = useState<number>()
 
-    const columns = (num : number) => {
+    const columns = useCallback((num : number) => {
         setCountColumns(num)
-    }
+    }, [])
 
-    const tasks = (num : number) => {
+    const tasks = useCallback((num : number) => {
         setCountTasks(num)
-    }
+    }, [])
 
     const { id } = useParams();
 

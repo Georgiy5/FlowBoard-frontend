@@ -26,14 +26,14 @@ export default function Column ({tasks, columns} : ColumnProps) {
             tasks(count)
         }
   
-    }, [data])
+    }, [data, tasks])
 
     useEffect(() => {
         if (data) {
             columns(data.length)
         }
   
-    }, [data])
+    }, [columns, data])
 
 
     return (

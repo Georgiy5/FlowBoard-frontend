@@ -33,7 +33,7 @@ export default function RegisterForm () {
             localStorage.setItem('token', data?.access_token)
             navigate('/')
         }
-    }, [data])
+    }, [data, navigate])
 
     return (
         <form className={cn(styles['form'])} >
