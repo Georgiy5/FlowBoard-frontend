@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/store'
 import Button from '@/shared/ui/Button'
 import CloseButton from '@/shared/ui/CloseButton'
@@ -16,8 +16,9 @@ export default function CreateColumnModal ({boardId} : {boardId : number}) {
     const [title, setTitle] = useState('')
 
     const [postBoard] = usePostColumnMutation()
-    
-    const post = () => {
+
+    const post = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
         postBoard({title: title, boardId: boardId})
         dispatch(closeColumnModal())
         setTitle('')

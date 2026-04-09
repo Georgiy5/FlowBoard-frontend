@@ -13,7 +13,7 @@ export default function BoardNav ({title, countColumn, countTask} : BoardNavProp
     let word1 = ''
     let word2 = ''
 
-    if (countColumn == 1) { word1 = 'колонке' } else { word1 = 'колонках' }
+    if (countColumn === 1) { word1 = 'колонке' } else { word1 = 'колонках' }
 
     switch (countTask) {
         case 1:
@@ -38,7 +38,7 @@ export default function BoardNav ({title, countColumn, countTask} : BoardNavProp
                 <button onClick={() => navigate('/')} className={styles.backButton}><img className={styles.svg} src="/back.svg"/></button>
                 <div className={styles.descriptionContainer}>
                     <p className={styles.title}>{title}</p>
-                    <p className={styles.count}>{countTask > 0 && countTask > 0 ? `${countTask} ${word2} в ${countColumn} ${word1}` : ''}</p>
+                    <p className={styles.count}>{countTask > 0 && countColumn > 0 ? `${countTask} ${word2} в ${countColumn} ${word1}` : ''}</p>
                 </div>
             </div>
 

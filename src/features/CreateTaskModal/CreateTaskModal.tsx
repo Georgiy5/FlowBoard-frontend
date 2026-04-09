@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/store'
 import Button from '@/shared/ui/Button'
 import CloseButton from '@/shared/ui/CloseButton'
@@ -17,15 +17,16 @@ export default function CreateTaskModal () {
     const [title, setTitle] = useState('')
     const [descr, setDescr] = useState('')
 
-    const [postTask] = usePostTaskMutation()    
-    const post = () => {
+    const [postTask] = usePostTaskMutation()
+    const post = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
         if (selectedColumn) {
             postTask({title, description: descr, columnId: selectedColumn})
             dispatch(closeTaskModal())
             setTitle('')
             setDescr('')
         }
-
     }
     useEffect(() => {
         if (isActive && inputRef.current) {

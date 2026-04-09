@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/store'
 import { usePostBoardMutation } from '@/entities/api'
 import { closeBoardModal } from './model/boardModalSlice'
@@ -16,8 +16,9 @@ export default function CreateBoardModal () {
     const [title, setTitle] = useState('')
 
     const [postBoard] = usePostBoardMutation()
-    
-    const post = () => {
+
+    const post = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
         postBoard({title})
         dispatch(closeBoardModal())
         setTitle('')
