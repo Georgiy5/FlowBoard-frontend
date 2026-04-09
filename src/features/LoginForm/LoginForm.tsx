@@ -17,14 +17,14 @@ export default function LoginForm () {
     const navigate = useNavigate()
 
     const auth = async (event: MouseEvent<HTMLButtonElement>) => {
-        console.log(email)
         event.preventDefault()
+
         try {
             await login({email: email, password: password }).unwrap()
             setEmail('')
-            setPassword('') 
-        } catch (error) {
-           console.log(error) 
+            setPassword('')
+        } catch {
+            // keep form state for user retry on auth failure
         }
     }
 
