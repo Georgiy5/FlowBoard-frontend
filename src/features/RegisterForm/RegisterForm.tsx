@@ -14,7 +14,7 @@ export default function RegisterForm () {
     const [name, setName] = useState('')
     const navigate = useNavigate()
 
-    const [register, {data, isSuccess}] = useRegisterMutation()
+    const [register, {data}] = useRegisterMutation()
 
     const authRegister = async (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()

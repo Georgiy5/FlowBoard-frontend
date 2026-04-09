@@ -61,7 +61,12 @@ export default function BoardCard ({title, onClick, id, count} : BoardCardProps)
                     className={styles.likeButton}
                     onClick={(e: React.MouseEvent) => {
                         e.stopPropagation()
-                        isFavorite ? deleteFavorite(id) : addFavorite(id)
+                        if (isFavorite) {
+                            deleteFavorite(id)
+                            return
+                        }
+
+                        addFavorite(id)
                     }}
                 >
                     <img src={isFavorite ? 'heartLiked.svg' : 'heart.svg'} className={styles.likeSVG}/>

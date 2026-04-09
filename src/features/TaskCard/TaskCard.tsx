@@ -2,8 +2,7 @@ import type { TaskCardProps } from "./type";
 import styles from './TaskCard.module.css'
 import Button from "@/shared/ui/Button";
 
-
-export default function ({title, description, onClick, id, dataId, titleAttr, descrAttr, columnId} : TaskCardProps) {
+export default function TaskCard ({title, description, onClick, dataId, titleAttr, descrAttr, columnId} : TaskCardProps) {
     return (
         <div className={styles.card} data-id={dataId} title-attr={titleAttr} descr-attr={descrAttr} column-id={columnId}>
             <p className={styles.title}>{title}</p>

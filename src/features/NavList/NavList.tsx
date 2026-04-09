@@ -2,7 +2,7 @@
 import cn from 'classnames';
 import styles from './NavList.module.css';
 import NavButton from '@/shared/ui/NavButton';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,13 +14,13 @@ export default function NavList () {
     return (
         <div className={cn(styles['list'])}>
             <NavButton
-                isActive={urlArr[urlArr.length-1] == '' ? true : false}
+                isActive={urlArr[urlArr.length-1] === ''}
                 source={'board.svg'}
                 text={'Доски'}
                 onClick={() => navigate('/')}
             />
             <NavButton
-                isActive={urlArr[urlArr.length-1] == 'favorites' ? true : false}
+                isActive={urlArr[urlArr.length-1] === 'favorites'}
                 source={'favorite.svg'}
                 text={'Избранное'}
                 onClick={() => navigate('/favorites')}

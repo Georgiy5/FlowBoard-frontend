@@ -15,7 +15,7 @@ export const taskModalSlice = createSlice({
   initialState,
   reducers: {
     openTaskModal: (state, action : PayloadAction<number>) => {
-        state.isActive = true,
+        state.isActive = true
         state.selectedColumn = action.payload
     },
     closeTaskModal: (state) => {

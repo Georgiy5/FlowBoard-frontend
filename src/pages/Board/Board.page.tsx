@@ -1,13 +1,10 @@
-import cn from 'classnames'
 import styles from './BoardPage.module.css'
 import { useGetBoardsByIdQuery } from '@/entities/api'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ColumnList } from '@/widgets/ColumnList'
-import Button from '@/shared/ui/Button'
 import { BoardNav } from '@/features/BoardNav'
-import { CreateColumnModal, openColumnModal } from '@/features/CreateColumnModal'
-import { useAppDispatch } from '@/app/providers/store'
+import { CreateColumnModal } from '@/features/CreateColumnModal'
 
 
 export default function BoardPage () {
@@ -26,9 +23,7 @@ export default function BoardPage () {
     const { id } = useParams();
 
     const param = Number(id)
-    const dispatch = useAppDispatch()
-
-    const {data , isLoading, isError} = useGetBoardsByIdQuery(param)
+    const {data} = useGetBoardsByIdQuery(param)
 
     return (
         <div className={styles.page}>

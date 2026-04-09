@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import styles from './NavMenu.module.css';
 
 import { NavList } from "@/features/NavList";
