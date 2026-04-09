@@ -8,7 +8,6 @@ export default function ProtectedRoute ({ children }: ProtectedRouteProps) {
   const location = useLocation();
   const token = localStorage.getItem('token');
   
-  // Если токена нет — редиректим на логин
   if (!token) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
